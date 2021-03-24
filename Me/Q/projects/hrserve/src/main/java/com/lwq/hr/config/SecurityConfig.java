@@ -3,7 +3,6 @@ package com.lwq.hr.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lwq.hr.entity.Hr;
 import com.lwq.hr.service.UserService;
-import lwq.returnbean.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +21,7 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.wayne.entity.RespBeanQ;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         PrintWriter out = resp.getWriter();
                         Hr hr = (Hr) authentication.getPrincipal();
                         hr.setPassword(null);
-                        RespBean ok = RespBean.ok("登录成功", hr);
+                        RespBeanQ ok = RespBeanQ.ok("登录成功", hr);
                         String s = new ObjectMapper().writeValueAsString(ok);
                         out.write(s);
                         out.flush();
@@ -94,7 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse resp, AuthenticationException e) throws IOException, ServletException {
                         resp.setContentType("application/json;charset=utf-8");
                         PrintWriter out = resp.getWriter();
-                        RespBean error = RespBean.error("登录失败");
+                        RespBeanQ error = RespBeanQ.error("登录失败");
                         if (e instanceof LockedException){
                             error.setMessage("账户被锁定,请联系管理员");
                         }else if (e instanceof CredentialsExpiredException){
@@ -124,7 +124,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication authentication) throws IOException, ServletException {
                         resp.setContentType("application/json;charset=utf-8");
                         PrintWriter out = resp.getWriter();
-                        out.write(new ObjectMapper().writeValueAsString(RespBean.ok("注销成功")));
+                        out.write(new ObjectMapper().writeValueAsString(RespBeanQ.ok("注销成功")));
                         out.flush();
                         out.close();
                     }
@@ -142,7 +142,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void commence(HttpServletRequest req, HttpServletResponse resp, AuthenticationException e) throws IOException, ServletException {
                         resp.setContentType("application/json;charset=utf-8");
                         PrintWriter out = resp.getWriter();
-                        RespBean error = RespBean.error("登录过期或未登录,请先登录!");
+                        RespBeanQ error = RespBeanQ.error("登录过期或未登录,请先登录!");
                         error.setStatus(401);
                         out.write(new ObjectMapper().writeValueAsString(error));
                         out.flush();

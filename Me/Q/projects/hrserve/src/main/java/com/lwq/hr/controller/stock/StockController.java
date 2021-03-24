@@ -2,9 +2,9 @@ package com.lwq.hr.controller.stock;
 
 import com.lwq.hr.entity.MyStock;
 import com.lwq.hr.mapper.MyStockMapper;
-import lwq.returnbean.RespBean;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.wayne.entity.RespBeanQ;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
@@ -24,9 +24,9 @@ public class StockController {
     String now = dateFormat.format(new Date());
 
     @GetMapping("/getTitle")
-    public RespBean getTitle(String kw){
+    public RespBeanQ getTitle(String kw){
         List<String> list = stockMapper.getTitles(kw);
-        return RespBean.ok(list);
+        return RespBeanQ.ok(list);
     }
     // 分页查询
     /*public RespPageBean getByPage(int page, int size, String keyWord, int id){
@@ -47,12 +47,12 @@ public class StockController {
     }*/
     
     @GetMapping("/")
-    public RespBean getAll(){
-        return RespBean.build().setData(stockMapper.getAllWithHunter(now));
-//        return RespBean.build().setData(stockMapper.getAll());
+    public RespBeanQ getAll(){
+        return RespBeanQ.build().setData(stockMapper.getAllWithHunter(now));
+//        return RespBeanQ.build().setData(stockMapper.getAll());
     }
     @PostMapping("/check")
-    public RespBean check(@RequestBody MyStock stock){
+    public RespBeanQ check(@RequestBody MyStock stock){
         //存在性验证
         List<MyStock> myStocks = stockMapper.selStock(stock.getTitle());
         StringBuilder msg= new StringBuilder("已存在类似商品: [");
@@ -62,40 +62,40 @@ public class StockController {
         }
         msg.append("]");
         if (myStocks.size()>0) {
-            return RespBean.build().setData(msg.toString());
+            return RespBeanQ.build().setData(msg.toString());
         }
-        return RespBean.ok();
+        return RespBeanQ.ok();
     }
     //新增
     @PostMapping("/")
     @Transactional
-    public RespBean add(@RequestBody MyStock stock){
+    public RespBeanQ add(@RequestBody MyStock stock){
         String title = stock.getTitle();
         int res = stockMapper.insert(stock);
         if (res<1) {
-            return RespBean.error("插入失败");
+            return RespBeanQ.error("插入失败");
         }
-        return RespBean.ok();
+        return RespBeanQ.ok();
     }
     //修改(库存/所有)
     @PutMapping("/")
     @Transactional
-    public RespBean update(@RequestBody MyStock stock){
+    public RespBeanQ update(@RequestBody MyStock stock){
         int res = stockMapper.updateById(stock);
         if (res!=1) {
-            return RespBean.error("更新出错");
+            return RespBeanQ.error("更新出错");
         }
-        return RespBean.ok();
+        return RespBeanQ.ok();
     }
     //删除
     @DeleteMapping("/{id}")
     @Transactional
-    public RespBean del(@PathVariable int id){
+    public RespBeanQ del(@PathVariable int id){
         int res = stockMapper.deleteById(id);
         if (res!=1) {
-            return RespBean.error("删除失败");
+            return RespBeanQ.error("删除失败");
         }
-        return RespBean.ok();
+        return RespBeanQ.ok();
     }
 
 }

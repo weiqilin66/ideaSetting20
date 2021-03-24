@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
+import org.wayne.utils.PoiUtilsQ;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -220,7 +221,7 @@ public class POIUtils {
         Employee employee = null;
         try {
             //1. 创建一个 workbook 对象
-            Workbook workbook = lwq.utils.POIUtils.myGetWorkbook(file.getInputStream(),file.getOriginalFilename());
+            Workbook workbook = PoiUtilsQ.myGetWorkbook(file.getInputStream(),file.getOriginalFilename());
             //2. 获取 workbook 中表单的数量
             int numberOfSheets = workbook.getNumberOfSheets();
             for (int i = 0; i < numberOfSheets; i++) {

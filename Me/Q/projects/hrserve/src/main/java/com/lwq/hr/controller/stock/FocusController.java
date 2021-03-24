@@ -2,8 +2,8 @@ package com.lwq.hr.controller.stock;
 
 import com.lwq.hr.entity.MyFocus;
 import com.lwq.hr.mapper.MyFocusMapper;
-import lwq.returnbean.RespBean;
 import org.springframework.web.bind.annotation.*;
+import org.wayne.entity.RespBeanQ;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -26,20 +26,20 @@ public class FocusController {
     }
 
     @PutMapping("/")
-    public RespBean update(@RequestBody MyFocus myFocus){
+    public RespBeanQ update(@RequestBody MyFocus myFocus){
 
         int res = myFocusMapper.updateById(myFocus);
 
-        return res==1?RespBean.ok():RespBean.error();
+        return res==1?RespBeanQ.ok():RespBeanQ.error();
     }
     @PostMapping("/")
-    public RespBean add(@RequestBody MyFocus myFocus){
+    public RespBeanQ add(@RequestBody MyFocus myFocus){
         int res = myFocusMapper.insert(myFocus);
-        return res==1?RespBean.ok():RespBean.error();
+        return res==1?RespBeanQ.ok():RespBeanQ.error();
     }
     @DeleteMapping("/{id}")
-    public RespBean del(@PathVariable int id){
+    public RespBeanQ del(@PathVariable int id){
         int res = myFocusMapper.deleteById(id);
-        return res==1?RespBean.ok():RespBean.error();
+        return res==1?RespBeanQ.ok():RespBeanQ.error();
     }
 }

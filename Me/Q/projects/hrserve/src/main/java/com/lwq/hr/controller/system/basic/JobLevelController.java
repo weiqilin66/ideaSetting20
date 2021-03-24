@@ -1,10 +1,10 @@
 package com.lwq.hr.controller.system.basic;
 
 import com.lwq.hr.entity.Joblevel;
-import lwq.returnbean.RespBean;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.wayne.entity.RespBeanQ;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
@@ -31,44 +31,44 @@ public class JobLevelController {
 
     @PostMapping("/")
     @Transactional
-    public RespBean addJobLevel(@RequestBody Joblevel jl){
+    public RespBeanQ addJobLevel(@RequestBody Joblevel jl){
         jl.setCreateDate(new Date());
         jl.setEnabled(true);
         int res = joblevelMapper.insert(jl);
         if (res!=1) {
-            return RespBean.error("添加失败");
+            return RespBeanQ.error("添加失败");
         }
-        return RespBean.ok("添加成功");
+        return RespBeanQ.ok("添加成功");
     }
 
     @PutMapping("/")
     @Transactional
-    public RespBean updateJobLevel(@RequestBody Joblevel jl){
+    public RespBeanQ updateJobLevel(@RequestBody Joblevel jl){
         int res = joblevelMapper.updateById(jl);
         if (res!=1) {
-            return RespBean.error("修改失败");
+            return RespBeanQ.error("修改失败");
         }
-        return RespBean.ok("修改成功");
+        return RespBeanQ.ok("修改成功");
     }
     
     @DeleteMapping("/{id}")
     @Transactional
-    public RespBean deleteById(@PathVariable int id){
+    public RespBeanQ deleteById(@PathVariable int id){
         int res = joblevelMapper.deleteById(id);
         if (res!=1) {
-            return RespBean.error("删除失败");
+            return RespBeanQ.error("删除失败");
 
         }
-        return RespBean.ok("删除成功");
+        return RespBeanQ.ok("删除成功");
     }
     @DeleteMapping("/")
-    public RespBean batchDelById(@Param("ids") int[] ids){
+    public RespBeanQ batchDelById(@Param("ids") int[] ids){
         ArrayList<Serializable> idList = new ArrayList<>();
 
         for (int i = 0; i < ids.length; i++) {
             idList.add(ids[i]);
         }
         joblevelMapper.deleteBatchIds(idList);
-        return RespBean.ok("批量删除成功");
+        return RespBeanQ.ok("批量删除成功");
     }
 }

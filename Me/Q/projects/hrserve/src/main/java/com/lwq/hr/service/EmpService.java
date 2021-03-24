@@ -2,8 +2,8 @@ package com.lwq.hr.service;
 
 import com.lwq.hr.entity.Employee;
 import com.lwq.hr.mapper.EmployeeMapper;
-import lwq.returnbean.RespPageBean;
 import org.springframework.stereotype.Service;
+import org.wayne.entity.RespPageBeanQ;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,8 +19,8 @@ public class EmpService {
     EmployeeMapper employeeMapper;
 
     // 分页查询
-    public RespPageBean getByPage(int page,int size,String keyWord,int id){
-        RespPageBean respPageBean = new RespPageBean();
+    public RespPageBeanQ getByPage(int page,int size,String keyWord,int id){
+        RespPageBeanQ respPageBean = new RespPageBeanQ();
         if (page!=0 && size!=0) {
             page = (page-1)*size;
         }

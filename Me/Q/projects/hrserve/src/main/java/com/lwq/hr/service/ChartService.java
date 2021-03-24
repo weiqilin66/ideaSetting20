@@ -6,7 +6,6 @@ import com.lwq.hr.entity.TbKw;
 import com.lwq.hr.mapper.GoodsMapper;
 import com.lwq.hr.mapper.SecondShopForMaxMapper;
 import com.lwq.hr.mapper.TbKwMapper;
-import lwq.returnbean.RespBean;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,6 +14,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.wayne.entity.RespBeanQ;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -76,7 +76,7 @@ public class ChartService {
      * @return 读取Excel宝贝存入数据库
      * @date 2020/5/14
      */
-    public RespBean loadExcelData(String excelPath) throws IOException {
+    public RespBeanQ loadExcelData(String excelPath) throws IOException {
         List<TbKw> kwList = new ArrayList<>();
         Workbook workbook = null;
         try {
@@ -141,7 +141,7 @@ public class ChartService {
             }
         } catch (IOException | InvalidFormatException e) {
             System.out.println(e + "\n打开excel失败");
-            return RespBean.error("读取excel失败!");
+            return RespBeanQ.error("读取excel失败!");
         } finally {
             assert workbook != null;
             workbook.close();
@@ -151,10 +151,10 @@ public class ChartService {
             tbKwMapper.delAll();
             tbKwMapper.batchInsert(kwList);
         } catch (Exception e) {
-            return RespBean.error("loading Excel sql Error");
+            return RespBeanQ.error("loading Excel sql Error");
         }
 
-        return RespBean.ok();
+        return RespBeanQ.ok();
     }
 
     /**

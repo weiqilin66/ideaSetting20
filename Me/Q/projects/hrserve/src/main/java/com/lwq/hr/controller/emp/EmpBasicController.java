@@ -4,13 +4,13 @@ import com.lwq.hr.entity.*;
 import com.lwq.hr.mapper.*;
 import com.lwq.hr.service.EmpService;
 import com.lwq.hr.utils.POIUtils;
-import lwq.returnbean.RespBean;
-import lwq.returnbean.RespPageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.wayne.entity.RespBeanQ;
+import org.wayne.entity.RespPageBeanQ;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -53,10 +53,10 @@ public class EmpBasicController {
      * @date 2020/2/13
      */
     @GetMapping("/")
-    public RespPageBean getEmpPage(@RequestParam(defaultValue = "1") int page,
-                                   @RequestParam(defaultValue = "20") int size,
-                                   @RequestParam(defaultValue = "") String keyWord,
-                                   @RequestParam(defaultValue = "-1") int id) {
+    public RespPageBeanQ getEmpPage(@RequestParam(defaultValue = "1") int page,
+                                    @RequestParam(defaultValue = "20") int size,
+                                    @RequestParam(defaultValue = "") String keyWord,
+                                    @RequestParam(defaultValue = "-1") int id) {
         return empService.getByPage(page, size, keyWord, id);
     }
 
@@ -78,7 +78,7 @@ public class EmpBasicController {
     String uploadPath;
 
     @PostMapping("/upload")
-    public RespBean upload(MultipartFile file) throws IOException {
+    public RespBeanQ upload(MultipartFile file) throws IOException {
         // -------------------------上传数据----------------------------
         File f = new File(uploadPath);
         if (!f.exists()) {
@@ -97,14 +97,14 @@ public class EmpBasicController {
         Integer res = employeeMapper.addEmps(employeeList);
 
         if (res==employeeList.size()) {
-            return RespBean.ok("成功上传"+res+"条数据");
+            return RespBeanQ.ok("成功上传"+res+"条数据");
         }
-        return RespBean.error("上传失败");
+        return RespBeanQ.error("上传失败");
     }
 
     /*------------------------------  CRUD  ----------------------------------------------------*/
     @PostMapping("/")
-    public RespBean addEmp(@RequestBody Employee e) {
+    public RespBeanQ addEmp(@RequestBody Employee e) {
         // 原因1 添加前端不传id属性 2 期初employee的id属性为integer
         //e.setId(1);// 神奇bug 自动生成随机值加入id并且超长
         // bug解决 之前id设置为Integer类型 默认值为null 执行employeeMapper.insert(e)时 mybatis把null转换成数值也就是那串超长的id 报类型转换错误
@@ -114,19 +114,19 @@ public class EmpBasicController {
         getContractTerm(e);
         int res = employeeMapper.insert(e);
         if (res == 1) {
-            return RespBean.ok("添加成功");
+            return RespBeanQ.ok("添加成功");
         }
-        return RespBean.error();
+        return RespBeanQ.error();
     }
 
     @PutMapping("/")
-    public RespBean update(@RequestBody Employee e) {
+    public RespBeanQ update(@RequestBody Employee e) {
         getContractTerm(e);
         int res = employeeMapper.updateByPrimaryKeySelective(e);
         if (res == 1) {
-            return RespBean.ok("更新成功");
+            return RespBeanQ.ok("更新成功");
         }
-        return RespBean.error();
+        return RespBeanQ.error();
     }
 
     // 合同期计算 年份相减 + 月份相减 得到合同期剩余月份数 再转换成年
@@ -141,13 +141,13 @@ public class EmpBasicController {
     }
 
     @DeleteMapping("/{id}")
-    public RespBean del(@PathVariable int id) {
+    public RespBeanQ del(@PathVariable int id) {
 
         int res = employeeMapper.deleteById(id);
         if (res == 1) {
-            return RespBean.ok("删除成功");
+            return RespBeanQ.ok("删除成功");
         }
-        return RespBean.error();
+        return RespBeanQ.error();
     }
 
     @GetMapping("/nations")
@@ -175,18 +175,18 @@ public class EmpBasicController {
     }
 
     @RequestMapping("/max")
-    public RespBean max() {
+    public RespBeanQ max() {
         int res = employeeMapper.getMaxID() + 1;
 
-        return RespBean.build().setStatus(200)
+        return RespBeanQ.build().setStatus(200)
                 // 8位字符 不足补0
                 .setData(String.format("%08d", res));
     }
 
     @GetMapping("/dep")
-    public RespBean getAllDep() {
+    public RespBeanQ getAllDep() {
 
-        return RespBean.build().setData(departmentMapper.getAllDepByParentId(-1));
+        return RespBeanQ.build().setData(departmentMapper.getAllDepByParentId(-1));
     }
 
 }

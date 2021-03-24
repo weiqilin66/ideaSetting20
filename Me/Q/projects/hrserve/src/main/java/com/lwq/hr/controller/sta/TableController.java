@@ -2,10 +2,10 @@ package com.lwq.hr.controller.sta;
 
 import com.lwq.hr.entity.Goods;
 import com.lwq.hr.mapper.GoodsMapper;
-import lwq.returnbean.RespPageBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wayne.entity.RespPageBeanQ;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -27,14 +27,14 @@ public class TableController {
     GoodsMapper goodsMapper;
 
     @GetMapping("/")
-    public RespPageBean getTableData(){
-        RespPageBean respPageBean = new RespPageBean();
+    public RespPageBeanQ getTableData(){
+        RespPageBeanQ RespPageBeanQ = new RespPageBeanQ();
         long total = goodsMapper.selectAll();
-        respPageBean.setTotal(total);
+        RespPageBeanQ.setTotal(total);
         HashMap<String, Object> columnMap = new HashMap<>();
         List<Goods> list = goodsMapper.selectByMap(columnMap);
-        respPageBean.setData(list);
-        return respPageBean;
+        RespPageBeanQ.setData(list);
+        return RespPageBeanQ;
     }
 
 }

@@ -7,13 +7,13 @@ import com.lwq.hr.mapper.GoodsMapper;
 import com.lwq.hr.mapper.SecondShopForMaxMapper;
 import com.lwq.hr.mapper.TbKwMapper;
 import com.lwq.hr.service.ChartService;
-import lwq.returnbean.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wayne.entity.RespBeanQ;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -44,9 +44,9 @@ public class ChartController {
 
 
     @GetMapping("/get2diff")
-    public RespBean getMaxMinFromShop(String maxShop,String minShop){
+    public RespBeanQ getMaxMinFromShop(String maxShop, String minShop){
 
-        return RespBean.ok(chartService.get2diff(maxShop,minShop));
+        return RespBeanQ.ok(chartService.get2diff(maxShop,minShop));
     }
     //清除springcache缓存
     @RequestMapping("/remove")
@@ -55,16 +55,16 @@ public class ChartController {
         return "清除diff缓存完毕";
     }
     /**
-     * @return lwq.returnbean.RespBean
+     * @return lwq.returnbean.RespBeanQ
      * @TODO 根据差价再分析 最高价格两张以上的店铺作为坑的目标 / 取集合中对象某个字段相同的对象map.containsKey()
      * @date 2020/5/15
      */
     @GetMapping("/thief")
-    public RespBean thiefShop() {
+    public RespBeanQ thiefShop() {
         List<Map<String, Object>> maxMin = getMaxMinToday();
         Map<String, Object> resMap = chartService.getMap(maxMin);
 
-        return RespBean.build().setData(resMap);
+        return RespBeanQ.build().setData(resMap);
     }
 
     /**
@@ -80,7 +80,7 @@ public class ChartController {
      * 根据店铺名称二次加工数据
      */
     @GetMapping("/byShop")
-    public RespBean byShop(String shopName){
+    public RespBeanQ byShop(String shopName){
         List<Map<String, Object>> maxMin = getMaxMinToday();
         List<Map<String, Object>> resList = new ArrayList<>();
         for (Map<String, Object> map : maxMin) {
@@ -88,20 +88,20 @@ public class ChartController {
                 resList.add(map);
             }
         }
-        return RespBean.build().setData(resList);
+        return RespBeanQ.build().setData(resList);
     }
     /**
      * @return 读取Excel获取宝贝关键字
      * @date 2020/5/13
      */
     @GetMapping("/goodList")
-    public RespBean getGoodList() {
+    public RespBeanQ getGoodList() {
         List<TbKw> list = tbKwMapper.selAll();
-        return RespBean.build().setData(list);
+        return RespBeanQ.build().setData(list);
     }
 
     @GetMapping("/initExcel")
-    public RespBean initExcelData() throws IOException {
+    public RespBeanQ initExcelData() throws IOException {
         return chartService.loadExcelData(filePath);
     }
 
@@ -187,13 +187,13 @@ public class ChartController {
      * @date 2020/3/11
      */
     @GetMapping("/maxAndMin")
-    public RespBean getMaxAndMin(String shop) {
+    public RespBeanQ getMaxAndMin(String shop) {
         // 日期字符串
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         String now = dateFormat.format(new Date());
         List<Goods> total = goodsMapper.selTotal(now);
         if (total.size() == 0) {
-            return RespBean.error("今天还没爬取数据!");
+            return RespBeanQ.error("今天还没爬取数据!");
         }
         List<Map<String, Object>> maxMin = null;
         if ("".equals(shop) || shop==null) {
@@ -202,9 +202,9 @@ public class ChartController {
             maxMin = chartService.getMaxMin(now,shop);
         }
         if (maxMin.get(0).get("error") != null) {
-            return RespBean.error(maxMin.get(0).get("error").toString());
+            return RespBeanQ.error(maxMin.get(0).get("error").toString());
         }
-        return RespBean.build().setData(maxMin);
+        return RespBeanQ.build().setData(maxMin);
     }
 
 

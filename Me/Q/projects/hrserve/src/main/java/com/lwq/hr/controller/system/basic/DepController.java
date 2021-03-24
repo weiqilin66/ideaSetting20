@@ -2,8 +2,8 @@ package com.lwq.hr.controller.system.basic;
 
 import com.lwq.hr.entity.Department;
 import com.lwq.hr.mapper.DepartmentMapper;
-import lwq.returnbean.RespBean;
 import org.springframework.web.bind.annotation.*;
+import org.wayne.entity.RespBeanQ;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -34,28 +34,28 @@ public class DepController {
      * @date   2020/2/13 
      */
     @PostMapping("/")
-    public RespBean addDepByProcess(@RequestBody Department dep){
+    public RespBeanQ addDepByProcess(@RequestBody Department dep){
         dep.setEnabled(true);
         departmentMapper.addDepByProcess(dep);
         if (dep.getResult()==1) {
 
-            return RespBean.ok("添加成功",dep);
+            return RespBeanQ.ok("添加成功",dep);
         }
-        return RespBean.error("添加失败");
+        return RespBeanQ.error("添加失败");
     }
     @DeleteMapping("/{id}")
-    public RespBean delByProcess(@PathVariable int id){
+    public RespBeanQ delByProcess(@PathVariable int id){
         // 存储过程out的值存在实体中
         Department dep = new Department();
         dep.setId(id);
         departmentMapper.delByProcess(dep);
         if (dep.getResult()==-2) {
-            return RespBean.error("该部门下有子部门删除失败");
+            return RespBeanQ.error("该部门下有子部门删除失败");
         }else if(dep.getResult()==-1){
-            return RespBean.error("该部门下有员工删除失败!");
+            return RespBeanQ.error("该部门下有员工删除失败!");
         }else if(dep.getResult()==1){
-            return RespBean.ok("删除成功");
+            return RespBeanQ.ok("删除成功");
         }
-        return RespBean.error();// 由全局异常捕捉返回失败信息
+        return RespBeanQ.error();// 由全局异常捕捉返回失败信息
     }
 }

@@ -8,7 +8,7 @@
         <version>2.2.8.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.lwq</groupId>
+    <groupId>org.wayne</groupId>
     <artifactId>hrserve</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>hr</name>
@@ -19,11 +19,11 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.lwq</groupId>-->
-<!--            <artifactId>wayne-api</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.wayne</groupId>
+            <artifactId>wayne_common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--####################  base   ######################-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
