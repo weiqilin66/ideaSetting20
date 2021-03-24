@@ -8,10 +8,12 @@
     <groupId>org.wayne</groupId>
     <artifactId>projects</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>untitled</module>
-        <module>system_cattle</module>
-    </modules>
-
+    <version>0.0.1-SNAPSHOT</version>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.8.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
 </project>
