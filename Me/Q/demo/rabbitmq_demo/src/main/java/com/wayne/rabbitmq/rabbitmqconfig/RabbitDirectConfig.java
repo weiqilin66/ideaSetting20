@@ -15,18 +15,22 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitDirectConfig {
     public static final String directName = "exchange1";
 
+    //消息队列
     @Bean
     Queue queue(){
-        return new Queue("myQ");//消息队列
+        return new Queue("myQ");
     }
 
+    //durable重启有效 autoDelete长期不适用是否删除
+    //exchange
     @Bean
-    DirectExchange directExchange(){//exchange
-        return new DirectExchange(directName,true,false);//durable重启有效 autoDelete长期不适用是否删除
+    DirectExchange directExchange(){
+        return new DirectExchange(directName,true,false);
     }
 
+    //directExchange:消息提供者将消息加入routingKey的队列中
     @Bean
     Binding binding(){
-        return BindingBuilder.bind(queue()).to(directExchange()).with("direct");//directExchange:消息提供者将消息加入routingKey的队列中
+        return BindingBuilder.bind(queue()).to(directExchange()).with("direct");
     }
 }
