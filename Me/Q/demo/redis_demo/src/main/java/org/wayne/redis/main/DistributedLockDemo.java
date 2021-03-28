@@ -17,7 +17,7 @@ import java.util.UUID;
 public class DistributedLockDemo {
     public final static String OK = "OK";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         final JedisConfig jedisConfig = new JedisConfig();
         jedisConfig.execute(new CallWithJedis() {

@@ -9,7 +9,7 @@ import redis.clients.jedis.Jedis;
  * @author: LinWeiQi
  */
 public class MyJedis {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 //        Jedis jedis = new Jedis("192.168.45.45");
 //        jedis.auth("123");
 //        String ping = jedis.ping();
