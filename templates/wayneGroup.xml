@@ -1,0 +1,15 @@
+<templateSet group="wayneGroup">
+  <template name="syso" value="System.out.println($END$);" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="*" value="*&#10; * @todo    描述 &#10; * @return  $returns$&#10; * @param   $params$&#10; * @date    $date$ &#10; &#10;*/" description="" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="returns" expression="methodReturnType()" defaultValue="" alwaysStopAt="true" />
+    <variable name="params" expression="methodParameters()" defaultValue="" alwaysStopAt="true" />
+    <variable name="date" expression="date()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+</templateSet>
