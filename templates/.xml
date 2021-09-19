@@ -1,0 +1,56 @@
+<templateSet group="方法">
+  <template name="pul" value="@$VAR4$&#10;public List&lt;$VAR1$&gt; $VAR2$(){&#10;&#10;    List&lt;$VAR1$&gt; $VAR3$list = new ArrayList&lt;&gt;();&#10;    $end$&#10;    return $VAR3$list;        &#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR4" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR3" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="end" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="puv" value="public void $VAR1$(){&#10;    $END$&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="pus" value="$END$&#10;public String $VAR1$(){&#10;   &#10;    return $VAR2$;        &#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="pui" value="public int $VAR1$(){&#10;    &#10;    int resInt = 0;&#10;    $end$&#10;    return resInt;&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="end" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="pum" value="public Map&lt;String,$var1$&gt; $VAR2$(){&#10;    &#10;    Map&lt;String,$var1$&gt; $var3$Map = new HashedMap();&#10;    $END$&#10;    return $var3$Map;        &#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="var1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="var3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="puo" value="public $var1$ $var2$(){&#10;    &#10;    return new $var1$().va$end$;&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="var1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="var2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="end" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="pure" value="@$VAR3$&#10;public RespBean $VAR1$($VAR2$){&#10;    $END$&#10;    return RespBean.ok();&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR3" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+</templateSet>

@@ -1,0 +1,44 @@
+<templateSet group="输出">
+  <template name="liveff" value="forEach(System.out::println);&#10;" description="forEach(System.out::println)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="***" value="($var1$){&#10;    $end$&#10;}" description="(){}" toReformat="false" toShortenFQNames="true">
+    <variable name="var1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="end" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="livelist" value="List&lt;$VAR1$&gt; list = new ArrayList&lt;&gt;();&#10;" description="ArrayList" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="livestrlist" value="List&lt;String&gt;" description="List&lt;String&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="livesf" value="/**&#10; * $var4$ &#10; */&#10;static final $var1$ $var2$ = $var3$;&#10;" description="常量输出+注释(缺省)" toReformat="false" toShortenFQNames="true">
+    <variable name="var1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="var2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="var3" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="var4" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="livelistmap" value="List&lt;Map&lt;String, Object&gt;&gt; mapList = new ArrayList&lt;&gt;();&#10;" description="List&lt;Map&lt;String, Object&gt;&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="livemap" value="Map&lt;String, Object&gt; map = new HashedMap();&#10;" description="map&lt;String,object&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+</templateSet>

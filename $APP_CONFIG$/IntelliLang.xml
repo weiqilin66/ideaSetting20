@@ -1,0 +1,8 @@
+<application>
+  <component name="LanguageInjectionConfiguration">
+    <injection language="JSON" injector-id="java">
+      <display-name>NStringEntity.NStringEntity (org.apache.http.nio.entity)</display-name>
+      <place><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("NStringEntity").withParameters("java.lang.String", "org.apache.http.entity.ContentType").definedInClass("org.apache.http.nio.entity.NStringEntity"))]]></place>
+    </injection>
+  </component>
+</application>
