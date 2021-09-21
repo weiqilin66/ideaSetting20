@@ -1,0 +1,23 @@
+<application>
+  <component name="AppStorage">
+    <option name="newTranslationDialogWidth" value="598" />
+    <option name="newTranslationDialogX" value="1032" />
+    <option name="newTranslationDialogY" value="627" />
+    <histories>
+      <item value="returned" />
+      <item value="addLast" />
+      <item value="return" />
+      <item value="parent" />
+      <item value="Configurable Environment" />
+      <item value="active Profiles" />
+    </histories>
+    <option name="languageScores">
+      <map>
+        <entry key="CHINESE" value="1" />
+      </map>
+    </option>
+  </component>
+  <component name="Cache">
+    <option name="lastTrimTime" value="1632202479209" />
+  </component>
+</application>
