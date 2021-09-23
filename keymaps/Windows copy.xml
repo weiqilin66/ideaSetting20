@@ -107,9 +107,6 @@
     <keyboard-shortcut first-keystroke="ctrl f2" />
     <keyboard-shortcut first-keystroke="alt s" />
   </action>
-  <action id="TranslatePlugin.TranslateAction">
-    <keyboard-shortcut first-keystroke="alt x" />
-  </action>
   <action id="context.load" />
   <action id="emacsIDEAs.AceJumpWord">
     <keyboard-shortcut first-keystroke="meta l" />
