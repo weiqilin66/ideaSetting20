@@ -4,9 +4,7 @@
       <option name="JAVA_CODE" value="true" />
     </context>
   </template>
-  <template name="***" value="($var1$){&#10;    $end$&#10;}" description="(){}" toReformat="false" toShortenFQNames="true">
-    <variable name="var1" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="end" expression="" defaultValue="" alwaysStopAt="true" />
+  <template name="live**" value="/**$END$**/" description="(){}" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="JAVA_CODE" value="true" />
     </context>
