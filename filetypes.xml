@@ -4,6 +4,7 @@
     <extensionMap>
       <mapping ext="gradle.kts" type="Kotlin" />
       <mapping ext="main.kts" type="Kotlin" />
+      <mapping ext="setting" type="PLAIN_TEXT" />
       <removed_mapping ext="apk" approved="true" type="ARCHIVE" />
       <removed_mapping ext="gitignore" approved="true" type="GitIgnore file" />
       <removed_mapping ext="psd" approved="true" type="Image" />
