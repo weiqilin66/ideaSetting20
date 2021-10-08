@@ -1199,6 +1199,14 @@
             </plugin>
           </value>
         </entry>
+        <entry key="*.redis">
+          <value>
+            <plugin>
+              <option name="myPluginId" value="com.hjf.redis.manager.redis-manager" />
+              <option name="myPluginName" value="Redis Manager" />
+            </plugin>
+          </value>
+        </entry>
         <entry key="*.regexp">
           <value>
             <plugin>
